@@ -1,4 +1,4 @@
-<!-- changes done to pom.xml file -->
+<!-- Clean and corrected pom.xml -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,17 +12,20 @@
   <version>1.0-SNAPSHOT</version>
   <name>Maven Project</name>
 
+  <!-- ✅ Encoding + Java version -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
+  <!-- ✅ Multi-module setup -->
   <modules>
     <module>server</module>
     <module>webapp</module>
   </modules>
 
+  <!-- ✅ Site configuration -->
   <distributionManagement>
     <site>
       <id>site-server</id>
@@ -35,7 +38,7 @@
   <build>
     <plugins>
 
-      <!-- Modern compiler plugin -->
+      <!-- Java compiler plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -63,20 +66,23 @@
       </plugin>
 
     </plugins>
+
+    <!-- ✅ pluginManagement MUST be inside build -->
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.2.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
   </build>
 
-  <!-- Optional: keep pluginManagement clean -->
-  <pluginManagement>
-    <plugins>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
-      </plugin>
-    </plugins>
-  </pluginManagement>
-
+  <!-- ✅ Dependency management -->
   <dependencyManagement>
     <dependencies>
+
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>servlet-api</artifactId>
@@ -95,9 +101,11 @@
         <version>4.13.2</version>
         <scope>test</scope>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
 
+  <!-- ✅ SCM -->
   <scm>
     <connection>scm:git:git@github.com:jleetutorial/maven-project.git</connection>
     <developerConnection>scm:git:git@github.com:jleetutorial/maven-project.git</developerConnection>
@@ -105,6 +113,7 @@
     <url>https://github.com/jleetutorial/maven-project</url>
   </scm>
 
+  <!-- ✅ Maven version -->
   <prerequisites>
     <maven>3.6.0</maven>
   </prerequisites>
